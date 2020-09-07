@@ -4,11 +4,15 @@ import FontAwesome from 'react-fontawesome';
 import '../css/Poster.css';
 
 class Poster extends Component {
+  state = {
+    hover: false
+  }
+
   render() {
     return (
       <div className="poster">
         <img src={this.props.imgSrc} alt="poster" className="poster--img" />
-        {this.props.hover ?
+        {this.state.hover ?
           (
             <div className="poster--overlay">
               <h3 className="poster--overlay__text">Wish List</h3>
