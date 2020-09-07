@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Header } from './components/Header';
+import { Header } from './components';
+import { Home } from './routes';
 import './App.css';
 
 class App extends Component {
@@ -7,6 +8,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header badge={15} />
+        <Home />
       </div>
       );
   }
