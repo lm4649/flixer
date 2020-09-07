@@ -12,9 +12,9 @@ class Home extends Component {
           overview={mDesc}
           imgSrc={image}
         />
-        <SearchBar />
+        <SearchBar onSearchClick={this.props.onSearchClick} />
         <PosterList movies={movies} />
-        <LoadButton loading={loading} />
+        <LoadButton onButtonClick={this.props.onButtonClick} loading={loading} />
       </div>
     );
   }

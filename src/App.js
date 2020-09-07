@@ -57,6 +57,8 @@ class App extends Component {
     ]
   }
 
+  handleSearch = value => console.log('handleSearch', value);
+  loadMore = () => console.log('load more');
 
   render() {
     return (
@@ -64,6 +66,8 @@ class App extends Component {
         <Header badge={this.state.badge} />
         <Home
           {...this.state}
+          onSearchClick={this.handleSearch}
+          onButtonClick={this.loadMore}
         />
       </div>
       );
