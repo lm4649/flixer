@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Header, Spinner } from './components';
-import { Home } from './routes';
+import { Home, Details, NotFound } from './routes';
 import { API_URL, API_KEY, IMAGE_BASE_URL, BACKDROP_SIZE } from './config';
 import './App.css';
 
@@ -102,6 +102,8 @@ class App extends Component {
                       onButtonClick={this.loadMore}
                     />
                   )} />
+                <Route path="/:id" exact component={Details} />
+                <Route component={NotFound} />
               </Switch>
             )
           }
