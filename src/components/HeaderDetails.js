@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
 import { Container, Stars } from './index';
+import { IMAGE_BASE_URL, POSTER_SIZE } from '../config';
+import { calcTime, convertMoney, calcVote } from '../utils/helpers';
 import '../css/HeaderDetails.css';
 
 class HeaderDetails extends Component {
+
+
   render() {
-    const imgSrc = this.props.imgSrc;
+    this.fakeArray1 = [];
+    this.fakeArray2 = [];
+    calcVote(this.props.vote,this.fakeArray1,this.fakeArray2);
+    const imgSrc = `${IMAGE_BASE_URL}/${POSTER_SIZE}/${this.props.imgSrc}`;
+
     return (
       <div className="headerDetails">
         <div className="badge-decoration">
@@ -21,9 +29,9 @@ class HeaderDetails extends Component {
             {this.props.mDesc}
           </p>
           <div className="headerDetails--info">
-            <Container iconName="clock" content={this.props.runtime} />
-            <Stars fakeArray1={["1", "1", "1"]} fakeArray2={["1", "1"]} />
-            <Container iconName="money" content={this.props.revenue} />
+            <Container iconName="clock" content={calcTime(this.props.runtime)} />
+            <Stars fakeArray1={this.fakeArray1} fakeArray2={this.fakeArray2 } />
+            <Container iconName="money" content={convertMoney(this.props.revenue)} />
           </div>
         </div>
       </div>

@@ -6,21 +6,14 @@ import { API_URL, API_KEY } from '../config';
 class Details extends Component {
   state = {
     loading: true,
-    mTitle: "Batman",
-    mDesc: "Movie overview",
-    imgSrc: "./images/Fast_large.jpg",
-    runtime: "2h30",
-    revenue: "$20000000",
-    status: "Released",
+    mTitle: "",
+    mDesc: "",
+    imgSrc: null,
+    runtime: "",
+    revenue: "",
+    status: "",
     vote: "",
-    actors : [
-      {name: "Marco Polo"},
-      {name: "Marco Polo"},
-      {name: "Marco Polo"},
-      {name: "Marco Polo"},
-      {name: "Marco Polo"},
-      {name: "Marco Polo"},
-    ]
+    actors : []
   }
 
   loadInfos = url => axios.get(url);
@@ -42,11 +35,16 @@ class Details extends Component {
       this.setState({
           revenue : revenue,
           runtime: runtime,
-          mTile : title,
+          mTitle : title,
           mDesc : overview,
           status : status,
           vote : vote_average,
           imgSrc : poster_path
+      }, async () => {
+        // get the actors
+        const url = `${API_URL}/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`;
+        const { data: { cast }} = await this.loadInfos(url);
+        this.setState({ actors: [...cast], loading: false });
       })
       // console.log('res', res);
     } catch(e) {
