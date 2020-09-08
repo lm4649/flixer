@@ -17,6 +17,7 @@ class PosterList extends Component {
           movie={movie}
           mTitle={movie.title}
           mDesc={movie.overview}
+          id={movie.id}
           />
         );
     })
