@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Poster } from './index';
+import { IMAGE_BASE_URL, POSTER_SIZE } from '../config';
 import '../css/PosterList.css';
 let wish;
 
 class PosterList extends Component {
   renderPoster = () => {
     return this.props.movies.map( movie => {
-      const imgSrc = './images/Fast_small.jpg';//movie.poster_path;
+      const imgSrc = `${IMAGE_BASE_URL}/${POSTER_SIZE}/${movie.poster_path}`;
       wish = false;
       return (
         <Poster
