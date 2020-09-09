@@ -3,6 +3,7 @@ import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
+
 import { getNumber } from '../actions';
 import '../css/Header.css';
 
@@ -18,7 +19,9 @@ class HeaderComponent extends Component {
           <FontAwesome className="header--movie" name="film" size="5x"/>
         </Link>
         <h3>FLIXER</h3>
-        <FontAwesome className="header--heart" name="heart" size="5x"/>
+        <Link to={{pathname: "/player"}}>
+          <FontAwesome className="header--heart" name="heart" size="5x"/>
+        </Link>
         <div className="header--badge">{this.props.badge}</div>
       </div>
     );

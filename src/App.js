@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 
 import store from './store';
 import { Header, Spinner } from './components';
-import { Home, Details, NotFound } from './routes';
+import { Home, Details, NotFound, MoviePlayer } from './routes';
 import { API_URL, API_KEY, IMAGE_BASE_URL, BACKDROP_SIZE } from './config';
 import './App.css';
 
@@ -106,6 +106,8 @@ class App extends Component {
                         onButtonClick={this.loadMore}
                       />
                     )} />
+                  <Route path="/player" exact component={MoviePlayer} />
+                  <Route path="/player/:id" exact component={MoviePlayer} />
                   <Route path="/:id" exact component={Details} />
                   <Route component={NotFound} />
                 </Switch>
