@@ -12,56 +12,8 @@ let newMovies = [];
 class MoviePlayer extends Component {
   state = {
     loading: true,
-    movies: [
-    {
-      id: 429617,
-      position: 1,
-      title: "Spider-Man: Far from home",
-      duration: "2h 9m",
-      imageUrl: "http://image.tmdb.org/t/p/w1200//5myQbDzw318k9yofUXRJ4UTVgam.jpg",
-      videoUrl: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-    },
-    {
-      id: 429618,
-      position: 2,
-      title: "Spider-Man: Far from home",
-      duration: "2h 9m",
-      imageUrl: "http://image.tmdb.org/t/p/w1200//5myQbDzw318k9yofUXRJ4UTVgam.jpg",
-      videoUrl: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-    },
-    {
-      id: 429619,
-      position: 3,
-      title: "Spider-Man: Far from home",
-      duration: "2h 9m",
-      imageUrl: "http://image.tmdb.org/t/p/w1200//5myQbDzw318k9yofUXRJ4UTVgam.jpg",
-      videoUrl: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-    },
-    {
-      id: 429620,
-      position: 4,
-      title: "Spider-Man: Far from home",
-      duration: "2h 9m",
-      imageUrl: "http://image.tmdb.org/t/p/w1200//5myQbDzw318k9yofUXRJ4UTVgam.jpg",
-      videoUrl: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-    },
-    {
-      id: 429621,
-      position: 5,
-      title: "Spider-Man: Far from home",
-      duration: "2h 9m",
-      imageUrl: "http://image.tmdb.org/t/p/w1200//5myQbDzw318k9yofUXRJ4UTVgam.jpg",
-      videoUrl: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-    }
-  ],
-  selectedMovie: {
-    id: 429617,
-    position: 1,
-    title: "Spider-Man: Far from home",
-    duration: "2h 9m",
-    imageUrl: "http://image.tmdb.org/t/p/w1200//5myQbDzw318k9yofUXRJ4UTVgam.jpg",
-    videoUrl: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-    }
+    movies: [],
+    selectedMovie: {}
   }
 
   async componentDidMount() {
@@ -85,16 +37,25 @@ class MoviePlayer extends Component {
       this.setState({
         loading: false,
         movies: [...newMovies],
-        selectedMovie: selectedMovie
+        selectedMovie
       })
     } else {
-      const selectedMovie = newMovies[0]
+      const selectedMovie = newMovies[0];
       this.setState({
         loading: false,
         movies: [...newMovies],
-        selectedMovie: selectedMovie
+        selectedMovie
     })
       this.props.history.push({ pathname: `/player/${selectedMovie.id}`})
+    }
+  };
+
+  componentDidUpdate(prevProps) {
+    console.log('mv pl comp did update');
+    if(prevProps.match.params.id !== this.props.match.params.id) {
+      const id = this.props.match.params.id;
+      const selectedMovie = this.getSelectedMovie(newMovies, id);
+      this.setState({ selectedMovie });
     }
   }
 
@@ -105,6 +66,12 @@ class MoviePlayer extends Component {
 
   handleEnded = () => {
     console.log("video ended");
+    const { movies, selectedMovie } = this.state;
+    const movieIndex = movies.findIndex( movie => selectedMovie.id === movie.id );
+    const nextMovieIndex = movieIndex === movies.length - 1 ? 0 : movieIndex + 1;
+    const NewSelectedMovie = movies[nextMovieIndex];
+    this.props.history.push({ pathname: `/player/${NewSelectedMovie.id}`});
+    this.setState({ selectedMovie: NewSelectedMovie });
   }
 
   getTime = movieId => {
