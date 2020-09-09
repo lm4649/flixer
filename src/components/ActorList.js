@@ -10,7 +10,7 @@ const ActorList = props => {
       return (
         <Actor
           key={i}
-          imgSrc={actor.profile_path ? imgSrc : "./images/Fast_small.jpg"}
+          imgSrc={actor.profile_path ? imgSrc : "./images/no_image.jpg"}
           name={actor.name}
           hover={false}
         />

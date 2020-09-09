@@ -7,7 +7,7 @@ let wish;
 class PosterList extends Component {
   renderPoster = () => {
     return this.props.movies.map( movie => {
-      const imgSrc = `${IMAGE_BASE_URL}/${POSTER_SIZE}/${movie.poster_path}`;
+      const imgSrc = movie.poster_path ? `${IMAGE_BASE_URL}/${POSTER_SIZE}/${movie.poster_path}` : "./images/no_image.jpg";
       wish = false;
       if(this.props.localMovies){
         this.props.localMovies.forEach(localMovie => {
