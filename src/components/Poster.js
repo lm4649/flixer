@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import { addMovie, removeMovie } from '../actions';
 import '../css/Poster.css';
 
-class Poster extends Component {
+class PosterComponent extends Component {
   state = {
     hover: false
   }
@@ -20,9 +23,9 @@ class Poster extends Component {
     this.setState({ hover: false });
   }
 
-  add = () => console.log('add with redux');
+  add = () => this.props.addMovie(this.props.movie);
 
-  remove = () => console.log('remove with redux');
+  remove = () =>this.props.removeMovie(this.props.id);
 
 
   render() {
@@ -53,5 +56,12 @@ class Poster extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ addMovie, removeMovie }, dispatch )
+}
+
+const Poster = connect(null, mapDispatchToProps)(PosterComponent);
+
 
 export { Poster };

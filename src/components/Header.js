@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import { getNumber } from '../actions';
 import '../css/Header.css';
 
-class Header extends Component {
+class HeaderComponent extends Component {
+  componentDidMount() {
+    this.props.getNumber();
+  }
+
   render() {
     return (
       <div className="header">
@@ -17,5 +24,15 @@ class Header extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return { badge: state.movies.number }
+}
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ getNumber }, dispatch )
+}
+
+const Header = connect(mapStateToProps,mapDispatchToProps)(HeaderComponent);
 
 export { Header };

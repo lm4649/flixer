@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+
+import store from './store';
 import { Header, Spinner } from './components';
 import { Home, Details, NotFound } from './routes';
 import { API_URL, API_KEY, IMAGE_BASE_URL, BACKDROP_SIZE } from './config';
@@ -89,26 +92,28 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <div className="App">
-          <Header badge={this.state.badge} />
-          {!this.state.image?
-            (<Spinner />) : (
-              <Switch>
-                <Route path="/" exact render={() => (
-                    <Home
-                      {...this.state}
-                      onSearchClick={this.handleSearch}
-                      onButtonClick={this.loadMore}
-                    />
-                  )} />
-                <Route path="/:id" exact component={Details} />
-                <Route component={NotFound} />
-              </Switch>
-            )
-          }
-        </div>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <div className="App">
+            <Header badge={this.state.badge} />
+            {!this.state.image?
+              (<Spinner />) : (
+                <Switch>
+                  <Route path="/" exact render={() => (
+                      <Home
+                        {...this.state}
+                        onSearchClick={this.handleSearch}
+                        onButtonClick={this.loadMore}
+                      />
+                    )} />
+                  <Route path="/:id" exact component={Details} />
+                  <Route component={NotFound} />
+                </Switch>
+              )
+            }
+          </div>
+        </BrowserRouter>
+      </Provider>
       );
   }
 }
