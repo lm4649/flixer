@@ -25,6 +25,10 @@
   margin-right: 2rem;
   cursor: pointer;
 }
+
+.inactive {
+  filter: grayscale(100%);
+}
 .header--container {
   position: relative;
 }

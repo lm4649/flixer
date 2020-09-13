@@ -19,9 +19,16 @@ class HeaderComponent extends Component {
           <FontAwesome className="header--movie" name="film" size="5x"/>
         </Link>
         <h3>FLIXER</h3>
-        <Link to={{pathname: "/player"}}>
-          <FontAwesome className="header--heart" name="heart" size="5x"/>
-        </Link>
+        { this.props.badge > 0 ?
+          (
+            <Link to={{pathname: "/player"}}>
+              <FontAwesome className="header--heart" name="heart" size="5x"/>
+            </Link>
+          ) :
+          (
+             <FontAwesome className="header--heart inactive" name="heart" size="5x"/>
+          )
+        }
         <div className="header--badge">{this.props.badge}</div>
       </div>
     );
