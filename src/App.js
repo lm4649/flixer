@@ -52,7 +52,13 @@ class App extends Component {
   }
 
   searchMovie = () => {
-    const url = `${API_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${this.state.searchText}`;
+    const page = 1;
+    let url;
+    if(this.state.searchText) {
+      url = `${API_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${this.state.searchText}`
+    } else {
+      url = `${API_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`;
+    }
     return axios.get(url);
   }
 
