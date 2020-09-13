@@ -42,9 +42,20 @@ class App extends Component {
 
   loadMovies = () => {
     const page = this.state.activePage + 1;
-    const url = `${API_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`;
+    let url;
+    if(this.state.searchText) {
+      url = `${API_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${this.state.searchText}&page=${page}`
+    } else {
+      url = `${API_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`;
+    }
     return axios.get(url);
   }
+
+  searchMovie = () => {
+    const url = `${API_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${this.state.searchText}`;
+    return axios.get(url);
+  }
+
 
   loadMore = async () => {
     try{
@@ -65,10 +76,6 @@ class App extends Component {
     }
   }
 
-  searchMovie = () => {
-    const url = `${API_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${this.state.searchText}`;
-    return axios.get(url);
-  }
 
   handleSearch = value => {
     try{
