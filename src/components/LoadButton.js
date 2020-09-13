@@ -3,6 +3,7 @@ import { Spinner } from './index';
 import '../css/LoadButton.css';
 
 class LoadButton extends Component {
+
   render() {
     return (
       <div>
