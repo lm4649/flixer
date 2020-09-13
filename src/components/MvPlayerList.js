@@ -19,8 +19,8 @@ class MvPlayerList extends Component {
   }
 
   render() {
-    const position ="1";
-    const total ="10";
+    const position = 1 + this.props.movies.findIndex( movie => movie.id === this.props.selectedMovie.id);
+    const total =this.props.movies.length;
      return (
             <div className="mvPlayerList">
                 <div className="mvPlayerList--header">

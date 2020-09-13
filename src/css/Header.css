@@ -28,6 +28,7 @@
 
 .inactive {
   filter: grayscale(100%);
+  cursor: not-allowed;
 }
 .header--container {
   position: relative;
