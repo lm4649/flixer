@@ -26,7 +26,7 @@ class MoviePlayer extends Component {
         position: index + 1,
         title: oldMovie.title,
         duration: results[index],
-        imageUrl: oldMovie.backdrop_path ? `${IMAGE_BASE_URL}/${BACKDROP_SIZE}/${oldMovie.backdrop_path}` : "./images/Fast_large.jpg",
+        imageUrl: oldMovie.backdrop_path ? `${IMAGE_BASE_URL}/${BACKDROP_SIZE}/${oldMovie.backdrop_path}` : "./images/no_video.jpg",
         videoUrl: `https://www.youtube.com/embed/${trailers[index]}`
       }
     })
