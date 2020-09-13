@@ -19,14 +19,15 @@ class MoviePlayer extends Component {
   async componentDidMount() {
     const oldMovies = JSON.parse(localStorage.getItem('movies'));
     const results = await this.getNewMovies(oldMovies);
+    const trailers = await this.getTrailers(oldMovies);
     newMovies = oldMovies.map((oldMovie, index) => {
       return {
         id: oldMovie.id,
         position: index + 1,
         title: oldMovie.title,
         duration: results[index],
-        imageUrl: `${IMAGE_BASE_URL}/${BACKDROP_SIZE}/${oldMovie.backdrop_path}`,
-        videoUrl: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+        imageUrl: oldMovie.backdrop_path ? `${IMAGE_BASE_URL}/${BACKDROP_SIZE}/${oldMovie.backdrop_path}` : "./images/Fast_large.jpg",
+        videoUrl: `https://www.youtube.com/embed/${trailers[index]}`
       }
     })
 
@@ -76,7 +77,7 @@ class MoviePlayer extends Component {
 
   getTime = movieId => {
         return new Promise((resolve, reject) => {
-            const url = `${API_URL}/movie/${movieId}?api_key=${API_KEY}&language=fr`;
+            const url = `${API_URL}/movie/${movieId}?api_key=${API_KEY}&language=en-US`;
             axios.get(url)
                 .then(data => {
                     const duration = data.data.runtime;
@@ -96,6 +97,34 @@ class MoviePlayer extends Component {
       const id = element.id;
       const time = await this.getTime(id);
       promises.push(calcTime(time));
+    }
+    return Promise.all(promises);
+  }
+
+
+  getTrailer = id => {
+    return new Promise((resolve, reject) => {
+            const url = `${API_URL}/movie/${id}/videos?api_key=${API_KEY}&language=en-US`;
+            axios.get(url)
+                .then(data => {
+                    console.log(data);
+                    const trailerKey = data.data.results.length > 0 ? data.data.results[0].key : "Zw_FKq10S8M";
+                    resolve(trailerKey)
+                })
+                .catch(e => {
+                    console.log('e',e);
+                    reject('error ', e);
+                })
+        })
+  }
+
+  getTrailers = async oldMovies => {
+    let promises = [];
+    for (let i = 0; i < oldMovies.length; i++) {
+      const element = oldMovies[i];
+      const id = element.id;
+      const trailer = await this.getTrailer(id);
+      promises.push(trailer);
     }
     return Promise.all(promises);
   }
