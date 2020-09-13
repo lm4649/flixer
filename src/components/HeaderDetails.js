@@ -11,7 +11,7 @@ class HeaderDetails extends Component {
     this.fakeArray1 = [];
     this.fakeArray2 = [];
     calcVote(this.props.vote,this.fakeArray1,this.fakeArray2);
-    const imgSrc = `${IMAGE_BASE_URL}/${POSTER_SIZE}/${this.props.imgSrc}`;
+    const imgSrc = this.props.imgSrc ? `${IMAGE_BASE_URL}/${POSTER_SIZE}/${this.props.imgSrc}` : "./images/no_image.jpg";
 
     return (
       <div className="headerDetails">
