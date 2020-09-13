@@ -5,7 +5,6 @@
   background-size: 100%, cover !important;
   background-position: center, center !important;
   position: relative;
-  /* background-position: center, center !important; */
 }
 .headerImg--overlay {
   position: absolute;
