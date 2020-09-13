@@ -8,6 +8,12 @@ class SearchBar extends Component {
   }
 
   handleChange = e => this.setState({ value: e.target.value });
+  // launch search when enter key is pressed
+  handleKeyDown = (e, value) => {
+    if (e.keyCode === 13) {
+      this.props.onSearchClick(value);
+    }
+  };
 
   render() {
     const { value } = this.state
@@ -20,6 +26,7 @@ class SearchBar extends Component {
             placeholder="search for a film"
             value={value}
             onChange={this.handleChange}
+            onKeyDown = {e => this.handleKeyDown(e, value)}
           />
           <div
             className="searchBar--submit"
