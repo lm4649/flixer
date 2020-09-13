@@ -7,3 +7,16 @@
   justify-content: center;
   align-items: center;
 }
+
+
+@media(max-width: 1024px) {
+  .moviePlayer {
+    flex-direction: column;
+  }
+  .videoPlayer {
+    width:100%;
+  }
+  .mvPlayerList{
+    width:100%;
+  }
+}

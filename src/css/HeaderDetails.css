@@ -11,8 +11,11 @@
   position: relative;
 }
 .headerDetails--poster {
-  height: 100%;
-  width: 25%;
+  max-width: 25%;
+  max-height: 120%;
+  width: auto;
+  height: auto;
+  align-self: baseline;
 }
 .headerDetails--poster__img {
   width: 100%;
@@ -40,6 +43,8 @@
   line-height: 2.3rem;
   font-weight: 100;
   padding-top: 2rem;
+  padding-right: 2rem;
+  z-index: 10;
 }
 .headerDetails--info {
   display: flex;
@@ -51,17 +56,38 @@
 .badge-decoration {
   width: 20rem;
   height: 3.5rem;
-  border: 1px solid #e28c09;
+  /* border: 1px solid #e28c09; */
   color: white;
   background: #d8a860;
   position: absolute;
-  right: -5rem;
-  top: 5rem;
+  right: -2rem;
+  top: 3rem;
   transform: rotateZ(45deg);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: bold;
   overflow: hidden !important;
+}
+
+.badge-decoration::after{
+  content: " ";
+  background-color: rgba(0,0,0,0.2);
+  width: 30rem;
+  height: 3.5rem;
+  position: absolute;
+  right: -9rem;
+  top: 0rem;
+  transform: rotateZ(0deg);
+  overflow: hidden !important;
+}
+
+@media(max-width: 567px) {
+  .headerDetails {
+  height: auto;
+  }
+  .fa-5x{
+    font-size: 3em;
+    }
 }

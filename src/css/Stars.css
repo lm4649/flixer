@@ -1,3 +1,10 @@
 .stars {
   color: #d8a860;
 }
+
+@media(max-width: 567px) {
+  .stars{
+    font-size: 18px;
+    }
+}
+
