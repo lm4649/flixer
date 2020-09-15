@@ -24,7 +24,8 @@ class App extends Component {
       totalPages: 0,
       searchText: "",
       movies: [],
-      category: "popular"
+      category: "popular",
+      displayedCategory: "Popular"
     }
   }
 
@@ -76,9 +77,9 @@ class App extends Component {
 
   handleSearch = value => {
     try{
-      this.setState({loading: true, searchText: value, image: null }, async () => {
+      this.setState({loading: true, searchText: value, displayedCategory: value, image: null }, async () => {
         const { data: {results, page, total_pages }} =  await this.searchMovie();
-        this.resetSate(results, page, total_pages);
+        this.resetState(results, page, total_pages);
       })
     } catch(e) {
       console.log('handle search failed', e);
@@ -86,9 +87,9 @@ class App extends Component {
   }
 
 
-  handleCategory = value => {
+  handleCategory = (id, name) => {
     try{
-      this.setState({loading: true, category: value, image: null }, async () => {
+      this.setState({loading: true, category: id, displayedCategory: name, image: null, searchText: "" }, async () => {
         const { data: {results, page, total_pages }} =  await this.searchMovie();
         console.log('load Movies successful', results);
         this.setState({

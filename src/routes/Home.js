@@ -22,7 +22,7 @@ class HomeRoute extends Component {
         />
         <Categories onSelectBrowseCategory = {this.props.onSelectBrowseCategory}/>
         <SearchBar onSearchClick={this.props.onSearchClick}/>
-        <PosterList movies={movies} localMovies={this.props.localMovies} />
+        <PosterList movies={movies} localMovies={this.props.localMovies} listHeader={this.props.displayedCategory}/>
         <LoadButton onButtonClick={this.props.onButtonClick} loading={loading} />
       </div>
     );

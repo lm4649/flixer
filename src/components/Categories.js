@@ -47,7 +47,7 @@ class Categories extends Component {
     const newSelectedCategory = this.state.genres[idx].name
     console.log(newSelectedCategory);
     selectedCategory = newSelectedCategory;
-    this.props.onSelectBrowseCategory(e.target.value);
+    this.props.onSelectBrowseCategory(e.target.value, selectedCategory);
   }
 
   render() {
