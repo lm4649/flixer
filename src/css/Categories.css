@@ -2,10 +2,8 @@
 
 
 .categories--container {
-  position: fixed;
-  top: 1.9rem;
-  left: 110px;
-  z-index: 1000;
+  font-weight: lighter;
+  font-size: large;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

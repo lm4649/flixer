@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
-import { HeaderImg, SearchBar, PosterList, LoadButton, Categories } from '../components';
+import { Link } from 'react-router-dom';
 
+import { HeaderImg, SearchBar, PosterList, LoadButton, Categories } from '../components';
 import { getMovies } from '../actions';
+import "../css/Home.css";
 
 class HomeRoute extends Component {
   componentDidMount() {
@@ -20,8 +22,13 @@ class HomeRoute extends Component {
           overview={mDesc}
           imgSrc={image}
         />
-        <Categories onSelectBrowseCategory = {this.props.onSelectBrowseCategory}/>
-        <SearchBar onSearchClick={this.props.onSearchClick}/>
+        <div className="menu--container">
+          <Categories onSelectBrowseCategory = {this.props.onSelectBrowseCategory}/>
+            <Link to={{pathname:"/my_list"}}>
+              <h3 className="menu--link">My List</h3>
+            </Link>
+          <SearchBar onSearchClick={this.props.onSearchClick}/>
+        </div>
         <PosterList movies={movies} localMovies={this.props.localMovies} listHeader={this.props.displayedCategory}/>
         <LoadButton onButtonClick={this.props.onButtonClick} loading={loading} />
       </div>
