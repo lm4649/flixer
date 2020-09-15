@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { HeaderImg, SearchBar, PosterList, LoadButton, Categories } from '../components';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
+import { HeaderImg, SearchBar, PosterList, LoadButton, Categories } from '../components';
 
 import { getMovies } from '../actions';
 
