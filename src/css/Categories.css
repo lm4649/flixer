@@ -1,0 +1,27 @@
+@import url('./colors.css');
+
+
+.categories--container {
+  position: fixed;
+  top: 4.5%;
+  left: 15%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.categories--container > label {
+  color: var(--light-color);
+  font-weight: 600;
+  font-size: 2vmin;
+  padding-top: 4px;
+  padding-right: 4px;
+}
+
+.categories {
+  border-radius: 2px;
+  background-color: var(--light-color);
+  font-family: "Wicked Scary Movie" !important;
+}
