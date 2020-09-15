@@ -42,3 +42,11 @@ h3 {
   color: #a81818;
   margin: 10rem auto;
 }
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}

@@ -16,17 +16,16 @@ class HeaderComponent extends Component {
     return (
       <div className="header">
         <Link to={{pathname:"/"}}>
-          <FontAwesome className="header--movie" name="film" size="5x"/>
+          <h3 className="header--brand">FLIXER</h3>
         </Link>
-        <h3>FLIXER</h3>
         { this.props.badge > 0 ?
           (
             <Link to={{pathname: "/player"}}>
-              <FontAwesome className="header--heart" name="heart" size="5x"/>
+              <FontAwesome className="header--movie" name="film" size="5x"/>
             </Link>
           ) :
           (
-             <FontAwesome className="header--heart inactive" name="heart" size="5x"/>
+             <FontAwesome className="header--movie inactive" name="film" size="5x"/>
           )
         }
         <div className="header--badge">{this.props.badge}</div>

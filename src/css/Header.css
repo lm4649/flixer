@@ -1,3 +1,5 @@
+@import url("./colors.css");
+
 .header {
   z-index: 1000;
   width: 100%;
@@ -6,8 +8,8 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background: #901818;
-  color: #fff;
+  background: var(--back-color);
+  color: var(--text-color);
   position: fixed;
   top: 0;
   /* padding: 0 1.5rem; */
@@ -16,12 +18,12 @@
   font-weight: bold;
   font-size: 2.7rem;
 }
-.header--movie {
-  color: #fff;
+.header--brand {
+  color: var(--primary-color);
   margin-left: 2rem;
 }
-.header--heart {
-  color: #d8a860;
+.header--movie {
+  color: var(--primary-color);
   margin-right: 2rem;
   cursor: pointer;
 }
