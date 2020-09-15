@@ -10,10 +10,14 @@ import '../css/MoviePlayer.css';
 let newMovies = [];
 
 class MoviePlayer extends Component {
-  state = {
-    loading: true,
-    movies: [],
-    selectedMovie: {}
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      movies: [],
+      selectedMovie: {}
+    }
   }
 
   async componentDidMount() {
@@ -52,7 +56,7 @@ class MoviePlayer extends Component {
   };
 
   componentDidUpdate(prevProps) {
-    console.log('mv pl comp did update');
+    // console.log('mv pl comp did update');
     if(prevProps.match.params.id !== this.props.match.params.id) {
       const id = this.props.match.params.id;
       const selectedMovie = this.getSelectedMovie(newMovies, id);
@@ -66,7 +70,7 @@ class MoviePlayer extends Component {
     }
 
   handleEnded = () => {
-    console.log("video ended");
+    // console.log("video ended");
     const { movies, selectedMovie } = this.state;
     const movieIndex = movies.findIndex( movie => selectedMovie.id === movie.id );
     const nextMovieIndex = movieIndex === movies.length - 1 ? 0 : movieIndex + 1;
