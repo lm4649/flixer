@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HeaderImg, SearchBar, PosterList, LoadButton } from '../components';
+import { HeaderImg, SearchBar, PosterList, LoadButton, Categories } from '../components';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
@@ -20,8 +20,9 @@ class HomeRoute extends Component {
           overview={mDesc}
           imgSrc={image}
         />
+        <Categories onSelectBrowseCategory = {this.props.onSelectBrowseCategory}/>
         <SearchBar onSearchClick={this.props.onSearchClick}/>
-        <PosterList movies={movies} localMovies={this.props.localMovies} />
+        <PosterList movies={movies} localMovies={this.props.localMovies} listHeader={this.props.displayedCategory}/>
         <LoadButton onButtonClick={this.props.onButtonClick} loading={loading} />
       </div>
     );

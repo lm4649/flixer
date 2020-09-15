@@ -9,10 +9,9 @@
   justify-content: space-between;
   align-items: center;
   background: var(--back-color);
-  color: var(--text-color);
+  color: var(--light-color);
   position: fixed;
   top: 0;
-  /* padding: 0 1.5rem; */
 }
 .header h3 {
   font-weight: bold;
@@ -20,11 +19,11 @@
 }
 .header--brand {
   color: var(--primary-color);
-  margin-left: 2rem;
+  margin-left: 2vmin;
 }
 .header--movie {
   color: var(--primary-color);
-  margin-right: 2rem;
+  margin-right: 2vmin;
   cursor: pointer;
 }
 
@@ -40,13 +39,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 2.6rem;
-  height: 2.6rem;
-  border-radius: 1.3rem;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
   background: #1c1c1c;
-  color: white;
-  right: 2rem;
-  bottom: 0.3rem;
+  color: var(--light-color);
+  right: 2vmax;
+  bottom: 20%;
   font-weight: bolder;
-  font-size: 1.5rem;
+  font-size: 150%;
 }
