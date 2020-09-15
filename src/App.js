@@ -19,7 +19,8 @@ class App extends Component {
     activePage: 0,
     totalPages: 0,
     searchText: "",
-    movies: []
+    movies: [],
+    category: "popular"
   }
 
   async componentDidMount() {
@@ -56,7 +57,9 @@ class App extends Component {
     let url;
     if(this.state.searchText) {
       url = `${API_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${this.state.searchText}`
-    } else {
+    } else if (this.state.category !=="popular") {
+       url = `${API_URL}/discover/movie?api_key=${API_KEY}&with_genres=${this.state.category}&language=en-US&page=${page}`
+    }else {
       url = `${API_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`;
     }
     return axios.get(url);
@@ -103,6 +106,27 @@ class App extends Component {
     }
   }
 
+
+  handleCategory = value => {
+    try{
+      this.setState({loading: true, category: value, image: null }, async () => {
+        const { data: {results, page, total_pages }} =  await this.searchMovie();
+        console.log('load Movies successful', results);
+        this.setState({
+          movies: results,
+          loading: false,
+          activePage: page,
+          totalPages: total_pages,
+          image: `${IMAGE_BASE_URL}/${BACKDROP_SIZE}/${results[0].backdrop_path}`,
+          mTitle: results[0].title,
+          mDesc: results[0].overview
+        })
+      })
+    } catch(e) {
+      console.log('handle category failed', e);
+    }
+  }
+
   render() {
     return (
       <Provider store={store}>
@@ -117,6 +141,7 @@ class App extends Component {
                         {...this.state}
                         onSearchClick={this.handleSearch}
                         onButtonClick={this.loadMore}
+                        onSelectBrowseCategory ={this.handleCategory}
                       />
                     )} />
                   <Route path="/player" exact component={MoviePlayer} />

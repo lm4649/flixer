@@ -20,7 +20,7 @@ class HomeRoute extends Component {
           overview={mDesc}
           imgSrc={image}
         />
-        <Categories />
+        <Categories onSelectBrowseCategory = {this.props.onSelectBrowseCategory}/>
         <SearchBar onSearchClick={this.props.onSearchClick}/>
         <PosterList movies={movies} localMovies={this.props.localMovies} />
         <LoadButton onButtonClick={this.props.onButtonClick} loading={loading} />

@@ -4,7 +4,7 @@ class Category extends Component {
   render() {
   const { id, name } = this.props;
     return (
-      <option value={id} className="category">{name}</option>
+      <option value={id} className="category" name={name}>{name}</option>
     );
   }
 }
