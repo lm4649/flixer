@@ -25,7 +25,8 @@ class App extends Component {
       searchText: "",
       movies: [],
       category: "popular",
-      displayedCategory: "Popular"
+      displayedCategory: "Popular",
+      currentUrl: window.location.href
     }
   }
 
@@ -37,17 +38,26 @@ class App extends Component {
         totalPages: total_pages,
         image: `${IMAGE_BASE_URL}/${BACKDROP_SIZE}/${results[0].backdrop_path}`,
         mTitle: results[0].title,
-        mDesc: results[0].overview
+        mDesc: results[0].overview,
       })
   }
 
+  getCurrentUrl = () => {
+    this.setState( { currentUrl: window.location.href });
+  }
+
   async componentDidMount() {
+    this.checkUrl = setInterval(this.getCurrentUrl, 200);
     try{
       const { data: {results, page, total_pages }} =  await this.searchMovie();
       this.resetState(results, page, total_pages)
     } catch(e) {
       console.log('load Movies failed', e);
     }
+  }
+
+    componenWillUnmount() {
+    clearInterval(this.checkUrl);
   }
 
   searchMovie = (pageNum = 1) => {
@@ -91,16 +101,7 @@ class App extends Component {
     try{
       this.setState({loading: true, category: id, displayedCategory: name, image: null, searchText: "" }, async () => {
         const { data: {results, page, total_pages }} =  await this.searchMovie();
-        console.log('load Movies successful', results);
-        this.setState({
-          movies: results,
-          loading: false,
-          activePage: page,
-          totalPages: total_pages,
-          image: `${IMAGE_BASE_URL}/${BACKDROP_SIZE}/${results[0].backdrop_path}`,
-          mTitle: results[0].title,
-          mDesc: results[0].overview
-        })
+        this.resetState(results, page, total_pages);
       })
     } catch(e) {
       console.log('handle category failed', e);
@@ -112,7 +113,7 @@ class App extends Component {
       <Provider store={store}>
         <BrowserRouter>
           <div className="App">
-            <Header badge={this.state.badge} />
+            <Header badge={this.state.badge} currentUrl={this.state.currentUrl}/>
             {!this.state.image?
               (<Spinner />) : (
                 <Switch>
@@ -124,8 +125,8 @@ class App extends Component {
                         onSelectBrowseCategory ={this.handleCategory}
                       />
                     )} />
-                  <Route path="/player" exact component={MoviePlayer} />
                   <Route path="/player/:id" exact component={MoviePlayer} />
+                  <Route path="/player" exact component={MoviePlayer} />
                   <Route path="/:id" exact component={Details} />
                   <Route component={NotFound} />
                 </Switch>
