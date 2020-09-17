@@ -1,0 +1,21 @@
+@import url('./colors.css');
+
+.menu--container {
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 25%;
+  width: 50%;
+}
+
+
+.menu--link {
+  text-decoration: none;
+  color: var(--light-color);
+  font-weight: bold;
+  font-size: 2vmin;
+  margin: 0 24px;
+}

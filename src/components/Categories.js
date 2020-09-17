@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Category } from './index';
 import '../css/Categories.css';
 
-let selectedCategory = "Popular"
+let selectedCategory = "Genres"
 
 class Categories extends Component {
   constructor(props){
@@ -31,8 +31,7 @@ class Categories extends Component {
                 {"id":53,"name":"Thriller"},
                 {"id":10752,"name":"War"},
                 {"id":37,"name":"Western"}
-              ],
-      selectedCategory: "Popular"
+              ]
     }
   }
 
@@ -53,7 +52,6 @@ class Categories extends Component {
   render() {
     return (
       <div className="categories--container">
-      <label htmlFor="categories"> Categories </label>
       <select className="categories" name="categories" id="categories" onChange={this.handleChange}>
         <Category value="selected" name={selectedCategory} className="category" />
         {this.renderCategories(this.state.genres)}

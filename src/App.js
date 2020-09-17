@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 
 import store from './store';
 import { Header, Spinner } from './components';
-import { Home, Details, NotFound, MoviePlayer } from './routes';
+import { Home, Details, NotFound, MoviePlayer, MyList } from './routes';
 import { API_URL, API_KEY, IMAGE_BASE_URL, BACKDROP_SIZE } from './config';
 import './App.css';
 
@@ -86,8 +86,9 @@ class App extends Component {
 
 
   handleSearch = value => {
+    const posterListTile = value ? `Search: ${value}` : "What are you looking for?";
     try{
-      this.setState({loading: true, searchText: value, displayedCategory: value, image: null }, async () => {
+      this.setState({loading: true, searchText: value, displayedCategory: posterListTile, image: null }, async () => {
         const { data: {results, page, total_pages }} =  await this.searchMovie();
         this.resetState(results, page, total_pages);
       })
@@ -125,8 +126,9 @@ class App extends Component {
                         onSelectBrowseCategory ={this.handleCategory}
                       />
                     )} />
-                  <Route path="/player/:id" exact component={MoviePlayer} />
                   <Route path="/player" exact component={MoviePlayer} />
+                  <Route path="/player/:id" exact component={MoviePlayer} />
+                  <Route path="/my_list" exact component={MyList} />
                   <Route path="/:id" exact component={Details} />
                   <Route component={NotFound} />
                 </Switch>
