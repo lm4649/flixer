@@ -69,8 +69,8 @@ class MoviePlayer extends Component {
         return selectedMovie;
     }
 
-  handleEnded = () => {
-    // console.log("video ended");
+  handleEnded =  () => {
+    console.log("video ended");
     const { movies, selectedMovie } = this.state;
     const movieIndex = movies.findIndex( movie => selectedMovie.id === movie.id );
     const nextMovieIndex = movieIndex === movies.length - 1 ? 0 : movieIndex + 1;

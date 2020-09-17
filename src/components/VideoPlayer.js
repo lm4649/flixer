@@ -4,12 +4,13 @@ import ReactPlayer from 'react-player';
 import '../css/VideoPlayer.css';
 
 class VideoPlayer extends Component {
+
     render() {
         return (
             <div className="videoPlayer">
-                <ReactPlayer
+                  <ReactPlayer
                     url={this.props.videoUrl}
-                    controls
+                    controls={true}
                     playing={true}
                     width="100%"
                     height="100%"
@@ -18,7 +19,7 @@ class VideoPlayer extends Component {
                     onEnded={this.props.handleEnded}
                 />
             </div>
-        )
+        );
     }
 }
 
