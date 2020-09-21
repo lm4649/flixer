@@ -135,24 +135,25 @@ class MoviePlayer extends Component {
   }
 
   render() {
+      const selection = this.state.selectedMovie ? this.state.selectedMovie : JSON.parse(localStorage.getItem('movies'))[0];
     return (
       <div className="moviePlayer">
         {this.state.loading ?
           (<Spinner />) :
           (
             <>
-            <Link to={{pathname:"/my_list"}}>
-              <h3 className="myList--link">My List</h3>
-            </Link>
-            <VideoPlayer
-              videoUrl = {this.state.selectedMovie.videoUrl}
-              imageUrl = {this.state.selectedMovie.imageUrl}
-              handleEnded = {this.handleEnded}
-            />
-            <MvPlayerList
-              movies = {this.state.movies}
-              selectedMovie = {this.state.selectedMovie}
-            />
+              <Link to={{pathname:"/my_list"}}>
+                <h3 className="myList--link">My List</h3>
+              </Link>
+              <VideoPlayer
+                videoUrl = {selection.videoUrl}
+                imageUrl = {selection.imageUrl}
+                handleEnded = {this.handleEnded}
+              />
+              <MvPlayerList
+                movies = {this.state.movies}
+                selectedMovie = {selection}
+              />
             </>
           )
         }
