@@ -23,7 +23,6 @@ class DetailsRoute extends Component {
       vote: "",
       actors : [],
       movie: {},
-      wished: false
     }
     this.props.getMovies();
   }
@@ -54,7 +53,6 @@ class DetailsRoute extends Component {
           status : status,
           vote : vote_average,
           imgSrc : poster_path,
-          wished: this.checkWished()
       }, async () => {
         // get the actors
         const url = `${API_URL}/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`;
@@ -68,12 +66,13 @@ class DetailsRoute extends Component {
   }
 
    checkWished = () => {
+      let wish = false;
       if(this.props.localMovies){
         this.props.localMovies.forEach(localMovie => {
-          if(this.state.movie.id === localMovie.id) { return true };
+          if(this.state.movie.id === localMovie.id) { wish = true };
         })
-        return false;
       }
+      return wish;
   }
 
     render() {
@@ -93,7 +92,7 @@ class DetailsRoute extends Component {
               revenue={this.state.revenue}
               status={this.state.status}
               vote={this.state.vote}
-              wished = { this.state.wished }
+              wished = { this.checkWished() }
             />
             <ActorList actors={this.state.actors}/>
           </div>

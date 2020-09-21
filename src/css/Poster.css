@@ -20,7 +20,7 @@
   justify-content: flex-end;
 }
 .poster--icon {
-  color: #781818;
+  color: red;
   margin-right: 1rem;
 }
 .poster--icon:hover {
@@ -36,6 +36,6 @@
 .poster--overlay__text {
   margin: 0 auto;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 2vw;
   color: white;
 }

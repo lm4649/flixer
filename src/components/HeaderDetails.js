@@ -28,17 +28,19 @@ class HeaderDetailsComponent extends Component {
           <img src={imgSrc} alt="movie poster" className="headerDetails--poster__img" />
         </div>
         <div className="headerDetails--container">
-          {this.props.wished ?
-                (
-                  <FontAwesome onClick={this.remove} className="poster--icon" name="heart" size="3x" />
-                ) :
-                (
-                  <FontAwesome onClick={this.add} className="poster--icon__not" name="heart-o" size="3x" />
-                )
-              }
-          <h3 className="headerDetails--container__title">
-            {this.props.mTitle}
-          </h3>
+          <div className="headerDetails--wrapper__titleAndIcon">
+            <h3 className="headerDetails--container__title">
+              {this.props.mTitle}
+            </h3>
+            {this.props.wished ?
+                  (
+                    <FontAwesome onClick={this.remove} className="poster--icon" name="check-circle" size="3x" />
+                  ) :
+                  (
+                    <FontAwesome onClick={this.add} className="poster--icon__not" name="plus-circle" size="3x" />
+                  )
+            }
+          </div>
           <p className="headerDetails--container__desc">
             {this.props.mDesc}
           </p>
