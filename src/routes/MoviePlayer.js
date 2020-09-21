@@ -142,18 +142,18 @@ class MoviePlayer extends Component {
           (<Spinner />) :
           (
             <>
-            <Link to={{pathname:"/my_list"}}>
-              <h3 className="myList--link">My List</h3>
-            </Link>
-            <VideoPlayer
-              videoUrl = {selection.videoUrl}
-              imageUrl = {selection.imageUrl}
-              handleEnded = {this.handleEnded}
-            />
-            <MvPlayerList
-              movies = {this.state.movies}
-              selectedMovie = {selection}
-            />
+              <Link to={{pathname:"/my_list"}}>
+                <h3 className="myList--link">My List</h3>
+              </Link>
+              <VideoPlayer
+                videoUrl = {selection.videoUrl}
+                imageUrl = {selection.imageUrl}
+                handleEnded = {this.handleEnded}
+              />
+              <MvPlayerList
+                movies = {this.state.movies}
+                selectedMovie = {selection}
+              />
             </>
           )
         }
