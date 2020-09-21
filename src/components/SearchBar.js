@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
+
+import { SpeechRecognition } from './index';
 import '../css/SearchBar.css';
 
 class SearchBar extends Component {
@@ -23,11 +25,12 @@ class SearchBar extends Component {
           <input
             type="text"
             className="searchBar--input"
-            placeholder="search for a film"
+            placeholder="search for a movie"
             value={value}
             onChange={this.handleChange}
             onKeyDown = {e => this.handleKeyDown(e, value)}
           />
+          <SpeechRecognition onSearchClick={this.props.onSearchClick} />
           <div
             className="searchBar--submit"
             onClick={() => this.props.onSearchClick(value)}

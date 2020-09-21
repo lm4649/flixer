@@ -15,3 +15,4 @@ export * from './MvPlayerList';
 export * from './MvPlayerListItem';
 export * from './Categories';
 export * from './Category';
+export * from './SpeechRecognition';

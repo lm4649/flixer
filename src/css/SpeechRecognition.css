@@ -1,0 +1,23 @@
+@import url("./colors.css");
+
+
+.microphone{
+  height: calc(100% - 2px);
+  width: 8px;
+  cursor: pointer;
+  padding: 0 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--back-color);
+  border: solid 1px var(--light-color);
+}
+
+.microphoneIcon {
+  align-items: flex-start;
+  font-size: 2vmin;
+  color: var(--light-color);
+}
+.microphoneIcon:hover {
+  color: var(--primary-color);
+}
