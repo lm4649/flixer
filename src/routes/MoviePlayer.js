@@ -135,6 +135,7 @@ class MoviePlayer extends Component {
   }
 
   render() {
+      const selection = this.state.selectedMovie ? this.state.selectedMovie : JSON.parse(localStorage.getItem('movies'))[0];
     return (
       <div className="moviePlayer">
         {this.state.loading ?
@@ -145,13 +146,13 @@ class MoviePlayer extends Component {
               <h3 className="myList--link">My List</h3>
             </Link>
             <VideoPlayer
-              videoUrl = {this.state.selectedMovie.videoUrl}
-              imageUrl = {this.state.selectedMovie.imageUrl}
+              videoUrl = {selection.videoUrl}
+              imageUrl = {selection.imageUrl}
               handleEnded = {this.handleEnded}
             />
             <MvPlayerList
               movies = {this.state.movies}
-              selectedMovie = {this.state.selectedMovie}
+              selectedMovie = {selection}
             />
             </>
           )
