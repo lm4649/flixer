@@ -64,7 +64,7 @@ class App extends Component {
     const page = pageNum;
     let url;
     if(this.state.searchText) {
-      url = `${API_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${this.state.searchText}`
+      url = `${API_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${this.state.searchText}&page=${page}`
     } else if (this.state.category !=="popular") {
        url = `${API_URL}/discover/movie?api_key=${API_KEY}&with_genres=${this.state.category}&language=en-US&page=${page}`
     }else {
@@ -76,6 +76,8 @@ class App extends Component {
 
   loadMore = async () => {
     try{
+      console.log("total", this.state.totalPages);
+      console.log("current", this.state.activePage);
       this.setState({ loading: true });
       const { data: {results, page, total_pages }} =  await this.searchMovie(this.state.activePage + 1);
       this.resetState([...this.state.movies, ...results], page, total_pages);
