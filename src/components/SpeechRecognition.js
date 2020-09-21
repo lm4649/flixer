@@ -3,9 +3,13 @@ import FontAwesome from 'react-fontawesome';
 
 import '../css/SpeechRecognition.css';
 
-window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-let recognition = new window.SpeechRecognition();
+let recognition;
+const isChrome = /chrom(e|ium)/.test(navigator.userAgent.toLowerCase())
 
+if(isChrome){
+  window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new window.SpeechRecognition();
+}
 
 class SpeechRecognition extends Component {
   constructor(props) {
@@ -29,9 +33,10 @@ class SpeechRecognition extends Component {
   }
 
   render() {
+    const chosenClass = isChrome ? "microphone" : "no-microphone";
     return (
       <div
-        className="microphone"
+        className={chosenClass}
         onClick={this.toggleListen}
       >
         <FontAwesome className="microphoneIcon" name={this.state.listening ? "microphone" : "microphone-slash"} />
