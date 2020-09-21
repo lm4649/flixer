@@ -41,13 +41,13 @@ class PosterComponent extends Component {
         {this.state.hover ?
           (
             <div className="poster--overlay">
-              <h3 className="poster--overlay__text">WISH LIST</h3>
+              <h3 className="poster--overlay__text">PLAY LIST</h3>
               {this.props.wished ?
                 (
-                  <FontAwesome onClick={this.remove} className="poster--icon" name="heart" size="3x" />
+                  <FontAwesome onClick={this.remove} className="poster--icon" name="check-circle" size="3x" />
                 ) :
                 (
-                  <FontAwesome onClick={this.add} className="poster--icon__not" name="heart-o" size="3x" />
+                  <FontAwesome onClick={this.add} className="poster--icon__not" name="plus-circle" size="3x" />
                 )
               }
             </div>

@@ -1,27 +1,39 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+
+import { getMovies } from '../actions';
 import { Spinner, HeaderDetails, ActorList } from '../components';
 import { API_URL, API_KEY } from '../config';
 
-class Details extends Component {
-  state = {
-    loading: true,
-    mTitle: "",
-    mDesc: "",
-    imgSrc: null,
-    runtime: "",
-    revenue: "",
-    status: "",
-    vote: "",
-    actors : []
+class DetailsRoute extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: true,
+      mTitle: "",
+      mDesc: "",
+      imgSrc: null,
+      runtime: "",
+      revenue: "",
+      status: "",
+      vote: "",
+      actors : [],
+      movie: {},
+    }
+    this.props.getMovies();
   }
 
   loadInfos = url => axios.get(url);
 
-  async componentDidMount () {
+   async componentDidMount () {
     try{
       const movieId = this.props.match.params.id;
       const url = `${API_URL}/movie/${movieId}?api_key=${API_KEY}&language=en-US`;
+      const movie = await this.loadInfos(url);
       const { data : {
           revenue,
           runtime,
@@ -31,15 +43,16 @@ class Details extends Component {
           vote_average,
           poster_path
         }
-      } = await this.loadInfos(url);
+      } = movie;
       this.setState({
+          movie: movie.data,
           revenue : revenue,
           runtime: runtime,
           mTitle : title,
           mDesc : overview,
           status : status,
           vote : vote_average,
-          imgSrc : poster_path
+          imgSrc : poster_path,
       }, async () => {
         // get the actors
         const url = `${API_URL}/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`;
@@ -52,14 +65,26 @@ class Details extends Component {
     }
   }
 
-  render() {
+   checkWished = () => {
+      let wish = false;
+      if(this.props.localMovies){
+        this.props.localMovies.forEach(localMovie => {
+          if(this.state.movie.id === localMovie.id) { wish = true };
+        })
+      }
+      return wish;
+  }
+
+    render() {
     return (
       <div className="app">
+
       {this.state.loading ?
         (<Spinner />) :
         (
           <div>
             <HeaderDetails
+              movie = {this.state.movie}
               mTitle={this.state.mTitle}
               mDesc={this.state.mDesc}
               imgSrc={this.state.imgSrc}
@@ -67,6 +92,7 @@ class Details extends Component {
               revenue={this.state.revenue}
               status={this.state.status}
               vote={this.state.vote}
+              wished = { this.checkWished() }
             />
             <ActorList actors={this.state.actors}/>
           </div>
@@ -76,5 +102,17 @@ class Details extends Component {
     );
   }
 }
+
+
+const mapStateToProps = state => {
+  return { localMovies: state.movies.movies }
+}
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ getMovies }, dispatch )
+}
+
+const Details = connect(mapStateToProps,mapDispatchToProps)(DetailsRoute);
+
 
 export { Details };

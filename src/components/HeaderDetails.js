@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
+import FontAwesome from 'react-fontawesome';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import { Container, Stars } from './index';
+import { addMovie, removeMovie } from '../actions';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../config';
 import { calcTime, convertMoney, calcVote } from '../utils/helpers';
 import '../css/HeaderDetails.css';
 
-class HeaderDetails extends Component {
-
+class HeaderDetailsComponent extends Component {
+  add = () => this.props.addMovie(this.props.movie);
+  remove = () =>this.props.removeMovie(this.props.movie.id);
 
   render() {
     this.fakeArray1 = [];
@@ -22,9 +28,19 @@ class HeaderDetails extends Component {
           <img src={imgSrc} alt="movie poster" className="headerDetails--poster__img" />
         </div>
         <div className="headerDetails--container">
-          <h3 className="headerDetails--container__title">
-            {this.props.mTitle}
-          </h3>
+          <div className="headerDetails--wrapper__titleAndIcon">
+            <h3 className="headerDetails--container__title">
+              {this.props.mTitle}
+            </h3>
+            {this.props.wished ?
+                  (
+                    <FontAwesome onClick={this.remove} className="poster--icon" name="check-circle" size="3x" />
+                  ) :
+                  (
+                    <FontAwesome onClick={this.add} className="poster--icon__not" name="plus-circle" size="3x" />
+                  )
+            }
+          </div>
           <p className="headerDetails--container__desc">
             {this.props.mDesc}
           </p>
@@ -38,5 +54,12 @@ class HeaderDetails extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ addMovie, removeMovie }, dispatch )
+}
+
+const HeaderDetails = connect(null, mapDispatchToProps)(HeaderDetailsComponent);
+
 
 export { HeaderDetails };
