@@ -1,19 +1,30 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+
+import { getMovies } from '../actions';
 import { Spinner, HeaderDetails, ActorList } from '../components';
 import { API_URL, API_KEY } from '../config';
 
-class Details extends Component {
-  state = {
-    loading: true,
-    mTitle: "",
-    mDesc: "",
-    imgSrc: null,
-    runtime: "",
-    revenue: "",
-    status: "",
-    vote: "",
-    actors : []
+class DetailsRoute extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: true,
+      mTitle: "",
+      mDesc: "",
+      imgSrc: null,
+      runtime: "",
+      revenue: "",
+      status: "",
+      vote: "",
+      actors : [],
+      wished: false
+    }
+    this.props.getMovies();
   }
 
   loadInfos = url => axios.get(url);
@@ -52,7 +63,7 @@ class Details extends Component {
     }
   }
 
-  render() {
+    render() {
     return (
       <div className="app">
       {this.state.loading ?
@@ -67,6 +78,7 @@ class Details extends Component {
               revenue={this.state.revenue}
               status={this.state.status}
               vote={this.state.vote}
+              wished = {this.state.wished}
             />
             <ActorList actors={this.state.actors}/>
           </div>
@@ -76,5 +88,17 @@ class Details extends Component {
     );
   }
 }
+
+
+const mapStateToProps = state => {
+  return { localMovies: state.movies.movies }
+}
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ getMovies }, dispatch )
+}
+
+const Details = connect(mapStateToProps,mapDispatchToProps)(DetailsRoute);
+
 
 export { Details };
