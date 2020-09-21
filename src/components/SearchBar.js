@@ -5,8 +5,12 @@ import { SpeechRecognition } from './index';
 import '../css/SearchBar.css';
 
 class SearchBar extends Component {
-  state={
-    value: ""
+
+  constructor(props) {
+    super(props);
+    this.state={
+      value: ""
+    }
   }
 
   handleChange = e => this.setState({ value: e.target.value });
