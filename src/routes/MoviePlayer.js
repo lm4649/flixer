@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import _ from 'lodash';
+import { Link } from 'react-router-dom';
 
 import { VideoPlayer, MvPlayerList, Spinner } from '../components/';
 import { API_URL, API_KEY, IMAGE_BASE_URL, BACKDROP_SIZE } from '../config';
@@ -70,7 +71,7 @@ class MoviePlayer extends Component {
     }
 
   handleEnded =  () => {
-    console.log("video ended");
+    // console.log("video ended");
     const { movies, selectedMovie } = this.state;
     const movieIndex = movies.findIndex( movie => selectedMovie.id === movie.id );
     const nextMovieIndex = movieIndex === movies.length - 1 ? 0 : movieIndex + 1;
@@ -140,6 +141,9 @@ class MoviePlayer extends Component {
           (<Spinner />) :
           (
             <>
+            <Link to={{pathname:"/my_list"}}>
+              <h3 className="myList--link">My List</h3>
+            </Link>
             <VideoPlayer
               videoUrl = {this.state.selectedMovie.videoUrl}
               imageUrl = {this.state.selectedMovie.imageUrl}
