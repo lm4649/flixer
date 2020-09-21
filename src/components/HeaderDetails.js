@@ -11,7 +11,7 @@ import '../css/HeaderDetails.css';
 
 class HeaderDetailsComponent extends Component {
   add = () => this.props.addMovie(this.props.movie);
-  remove = () =>this.props.removeMovie(this.props.id);
+  remove = () =>this.props.removeMovie(this.props.movie.id);
 
   render() {
     this.fakeArray1 = [];
