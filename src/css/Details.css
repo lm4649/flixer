@@ -1,0 +1,11 @@
+.myList--link {
+  position: fixed;
+  z-index: 2000;
+  top: 4rem;
+  left: 50%;
+  transform: translate(-50%);
+  text-decoration: none;
+  color: var(--light-color);
+  font-weight: bold;
+  font-size: 2vmin;
+}

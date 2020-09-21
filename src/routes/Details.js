@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 
 import { getMovies } from '../actions';
 import { Spinner, HeaderDetails, ActorList } from '../components';
 import { API_URL, API_KEY } from '../config';
+import '../css/Details.css';
 
 class DetailsRoute extends Component {
 
@@ -83,6 +85,9 @@ class DetailsRoute extends Component {
         (<Spinner />) :
         (
           <div>
+            <Link to={{pathname:"/my_list"}}>
+              <h3 className="myList--link">My List</h3>
+            </Link>
             <HeaderDetails
               movie = {this.state.movie}
               mTitle={this.state.mTitle}
