@@ -3,13 +3,22 @@ import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import AOS from "aos";
 
 import { addMovie, removeMovie } from '../actions';
+import "aos/dist/aos.css";
 import '../css/Poster.css';
 
 class PosterComponent extends Component {
-  state = {
+  constructor(props) {
+    super(props);
+    this.state = {
     hover: false
+    }
+  }
+
+  componentDidMount(){
+    AOS.init();
   }
 
   showOverlay = () => {
@@ -29,11 +38,13 @@ class PosterComponent extends Component {
 
 
   render() {
+    AOS.refresh();
     return (
       <div
         className="poster"
         onMouseEnter={this.showOverlay}
         onMouseLeave={this.hideOverlay}
+        data-aos ="flip-left"
       >
         <Link to={{ pathname: `/${this.props.id}` }} >
           <img src={this.props.imgSrc} alt="poster" className="poster--img" />

@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
+import AOS from "aos";
+
+import "aos/dist/aos.css";
 import '../css/Actor.css';
 
 class Actor extends Component {
-  state = {
-    hover: false
+  constructor(props) {
+    super(props);
+    this.state = {
+      hover: false
+    }
+  }
+
+  componentDidMount(){
+    AOS.init();
   }
 
   showOverlay = () => {
@@ -18,11 +28,13 @@ class Actor extends Component {
   }
 
   render() {
+    AOS.refresh();
     const name = this.props.name.split(" ");
     return (
       <div className="actor"
         onMouseEnter={this.showOverlay}
         onMouseLeave={this.hideOverlay}
+        data-aos="zoom-in-up"
       >
       <img src={this.props.imgSrc} alt="actor" className="actor--img"/>
       {this.state.hover?
