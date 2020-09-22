@@ -57,7 +57,6 @@ class MoviePlayer extends Component {
   };
 
   componentDidUpdate(prevProps) {
-    // console.log('mv pl comp did update');
     if(prevProps.match.params.id !== this.props.match.params.id) {
       const id = this.props.match.params.id;
       const selectedMovie = this.getSelectedMovie(newMovies, id);
@@ -137,29 +136,29 @@ class MoviePlayer extends Component {
   render() {
       const selection = this.state.selectedMovie ? this.state.selectedMovie : JSON.parse(localStorage.getItem('movies'))[0];
     return (
-      <div className="moviePlayer">
-        {this.state.loading ?
-          (<Spinner />) :
-          (
-            <>
-              <Link to={{pathname:"/my_list"}}>
-                <h3 className="myList--link">My List</h3>
-              </Link>
-              <VideoPlayer
-                videoUrl = {selection.videoUrl}
-                imageUrl = {selection.imageUrl}
-                handleEnded = {this.handleEnded}
-              />
-              <MvPlayerList
-                movies = {this.state.movies}
-                selectedMovie = {selection}
-              />
-            </>
-          )
-        }
-      </div>
-    );
-  }
+            <div className="moviePlayer">
+              {this.state.loading ?
+                (<Spinner />) :
+                (
+                  <>
+                    <Link to={{pathname:"/my_list"}}>
+                      <h3 className="myList--link--moviePlayer">My List</h3>
+                    </Link>
+                    <VideoPlayer
+                      videoUrl = {selection.videoUrl}
+                      imageUrl = {selection.imageUrl}
+                      handleEnded = {this.handleEnded}
+                    />
+                    <MvPlayerList
+                      movies = {this.state.movies}
+                      selectedMovie = {selection}
+                    />
+                  </>
+                )
+              }
+            </div>
+            );
+          }
 }
 
 

@@ -10,8 +10,16 @@
   align-items: center;
 }
 
-.myList--link{
-  font-size: 1.5vw;
+.myList--link--moviePlayer{
+  position: fixed;
+  z-index: 2000;
+  top: 4rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-decoration: none;
+  color: var(--light-color);
+  font-weight: bold;
+  font-size: 2.5vmin;
 }
 
 @media(max-width: 1024px) {

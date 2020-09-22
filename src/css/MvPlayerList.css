@@ -44,7 +44,7 @@
   overflow-y: auto;
   height: calc(100% - 8rem);
   margin-top: 8rem;
-  background: #010517db;
+  background: linear-gradient( #010517db, var(--back-color));
 }
 
 /* width */
