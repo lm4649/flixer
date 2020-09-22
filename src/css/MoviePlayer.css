@@ -10,6 +10,9 @@
   align-items: center;
 }
 
+.myList--link{
+  font-size: 1.5vw;
+}
 
 @media(max-width: 1024px) {
   .moviePlayer {
