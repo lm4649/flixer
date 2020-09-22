@@ -45,7 +45,7 @@
 .mvPlayerListItem--time {
   margin-left: 0.5rem;
   text-align: center;
-  background: var(--golden-color);
+  background: #010517db;
   width: 4.5rem;
   height: 2rem;
   border-radius: 0.5rem;

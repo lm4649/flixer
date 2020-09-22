@@ -22,15 +22,19 @@ class HeaderComponent extends Component {
         </Link>
         {  activate ?
           (
-            <Link to={{pathname: "/player"}}>
-              <FontAwesome className="header--movie" name="film" size="5x"/>
+            <Link to={{pathname: "/player"}} style={{position: "relative"}}>
+              <FontAwesome className="header--movie" name="film" size="5x">
+                <div className="header--badge">{this.props.badge}</div>
+              </FontAwesome>
             </Link>
           ) :
           (
-             <FontAwesome className="header--movie inactive" name="film" size="5x"/>
+             <FontAwesome className="header--movie inactive" name="film" size="5x" >
+                <div className="header--badge">{this.props.badge}</div>
+             </FontAwesome>
           )
         }
-        <div className="header--badge">{this.props.badge}</div>
+
       </div>
     );
   }

@@ -24,6 +24,7 @@ html {
 
 body {
   font-family: "Wicked Scary Movie", Helvetica, Arial, sans-serif !important;
+  background: linear-gradient(90deg, rgb(240,233,233) 0%, white 50%, rgb(240,233,233) 100%);
 }
 
 div {
