@@ -64,7 +64,7 @@ class App extends Component {
     const page = pageNum;
     let url;
     if(this.state.searchText) {
-      url = `${API_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${this.state.searchText}&page=${page}`
+      url = `${API_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${this.state.searchText}&page=${page}&include_adult=false`
     } else if (this.state.category !=="popular") {
        url = `${API_URL}/discover/movie?api_key=${API_KEY}&with_genres=${this.state.category}&language=en-US&page=${page}`
     }else {
