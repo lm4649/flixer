@@ -1,12 +1,16 @@
+@import url('./colors.css');
+
 .poster {
   margin: 2%;
   width: 20%;
   position: relative;
 }
+
 .poster--img {
   width: 100%;
   cursor: pointer;
 }
+
 .poster--overlay {
   position: absolute;
   left: 0;
@@ -19,23 +23,28 @@
   align-items: center;
   justify-content: flex-end;
 }
+
 .poster--icon {
   color: red;
   margin-right: 1rem;
 }
+
 .poster--icon:hover {
   cursor: pointer;
 }
+
 .poster--icon__not {
-  color: white;
+  color: var(--light-color);
   margin-right: 1rem;
 }
+
 .poster--icon__not:hover {
   cursor: pointer;
 }
+
 .poster--overlay__text {
   margin: 0 auto;
   font-weight: bold;
   font-size: 2vw;
-  color: white;
+  color: var(--light-color);
 }

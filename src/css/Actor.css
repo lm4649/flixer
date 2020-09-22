@@ -3,9 +3,11 @@
   width: 20%;
   position: relative;
 }
+
 .actor--img {
   width: 100%;
 }
+
 .actor--overlay {
   position: absolute;
   left: 0;
@@ -18,8 +20,9 @@
   align-items: center;
   justify-content: center;
 }
+
 .actor--name {
-  font-size: 2rem;
+  font-size: 3vw;
   color: white;
   font-weight: bolder;
   margin-bottom: 0.5rem;

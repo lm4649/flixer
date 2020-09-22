@@ -3,6 +3,7 @@
   flex-direction: column;
   width: 100%;
 }
+
 .posterList--title {
   font-size: 4.5rem;
   color: #1c1c1c;
@@ -11,10 +12,10 @@
   text-align: center;
   text-transform: uppercase;
 }
+
 .posterList--grid {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   padding: 2vw;
- /* justify-content: center;*/
 }
