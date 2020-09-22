@@ -3,7 +3,7 @@ import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { Container, Stars } from './index';
+import { Container, Stars } from '../components';
 import { addMovie, removeMovie } from '../actions';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../config';
 import { calcTime, convertMoney, calcVote } from '../utils/helpers';

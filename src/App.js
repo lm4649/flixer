@@ -4,7 +4,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import store from './store';
-import { Header, Spinner } from './components';
+import { Spinner } from './components';
+import { Header } from './containers';
 import { Home, Details, NotFound, MoviePlayer, MyList } from './routes';
 import { API_URL, API_KEY, IMAGE_BASE_URL, BACKDROP_SIZE } from './config';
 import './App.css';
