@@ -18,6 +18,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .searchBar--input {
   font-size: 2vmin;
   background: none;
@@ -32,6 +33,7 @@
   font-family: "Wicked Scary Movie" !important;
   text-transform: uppercase;
 }
+
 .searchBar--input:focus {
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0.15);
 }
@@ -53,6 +55,7 @@
   font-size: 2vmin;
   color: var(--light-color);
 }
+
 .searchIcon:hover {
   color: var(--primary-color);
 }

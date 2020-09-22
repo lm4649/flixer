@@ -1,5 +1,7 @@
+@import url('./colors.css');
+
 .stars {
-  color: #d8a860;
+  color: var(--golden-color);
 }
 
 @media(max-width: 567px) {

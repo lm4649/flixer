@@ -1,3 +1,5 @@
+@import url('./colors.css');
+
 .mvPlayerListItem {
   position: relative;
   display: flex;
@@ -10,13 +12,15 @@
   font-family: "28 Days Later";
   height: 7rem;
 }
+
 .active {
-  border-left: 1rem solid #901818;
+  border-left: 1rem solid var(--primary-color);
 }
 
 .mvPlayerListItem:hover {
   background: #549092;
 }
+
 .mvPlayerListItem--divider {
   width: 100%;
   height: 0.2rem;
@@ -24,21 +28,24 @@
   margin: 0 auto;
   background: #ffffff9e;
 }
+
 .mvPlayerListItem--number {
   flex-grow: 1;
   width: 0.3rem;
   padding-right: 1rem;
   border-right: 2px solid #565656;
 }
+
 .mvPlayerListItem--title {
   flex-grow: 10;
   padding-left: 1rem;
   text-align: left;
 }
+
 .mvPlayerListItem--time {
   margin-left: 0.5rem;
   text-align: center;
-  background: #d8a860;
+  background: var(--golden-color);
   width: 4.5rem;
   height: 2rem;
   border-radius: 0.5rem;
