@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Poster } from './index';
+import { Poster } from '../containers';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../config';
 import '../css/PosterList.css';
 let wish;

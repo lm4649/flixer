@@ -5,7 +5,8 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 
 import { getMovies } from '../actions';
-import { Spinner, HeaderDetails, ActorList } from '../components';
+import { Spinner, ActorList } from '../components';
+import { HeaderDetails } from '../containers'
 import { API_URL, API_KEY } from '../config';
 import '../css/Details.css';
 
