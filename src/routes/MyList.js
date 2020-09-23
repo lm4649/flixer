@@ -13,10 +13,10 @@ class MyListRoute extends Component {
     }
 
   render() {
-    const { movies, localMovies } = this.props;
+    const { movies, localMovies, number } = this.props;
     return (
       <>
-      { localMovies ? (
+      { localMovies && number > 0 ? (
         <div className="myList--container">
           <PosterList movies={movies} localMovies={localMovies} listHeader="My List"/>
         </div>
@@ -33,7 +33,7 @@ class MyListRoute extends Component {
 
 
 const mapStateToProps = state => {
-  return { localMovies: state.movies.movies, movies: state.movies.movies }
+  return { localMovies: state.movies.movies, movies: state.movies.movies, number: state.movies.number }
 }
 
 const mapDispatchToProps = dispatch => {
