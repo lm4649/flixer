@@ -24,3 +24,9 @@
 .microphoneIcon:hover {
   color: var(--primary-color);
 }
+
+@media (max-width: 768px) {
+  .microphone{
+    display: none;
+  }
+}
