@@ -4,10 +4,11 @@ import _ from 'lodash';
 import { Link } from 'react-router-dom';
 
 import { VideoPlayer, MvPlayerList, Spinner } from '../components/';
-import { API_URL, API_KEY, IMAGE_BASE_URL, BACKDROP_SIZE } from '../config';
+import { API_URL, IMAGE_BASE_URL, BACKDROP_SIZE } from '../config';
 import { calcTime } from '../utils/helpers'
 import '../css/MoviePlayer.css';
 
+const API_KEY = process.env.REACT_APP_API_KEY;
 let newMovies = [];
 
 class MoviePlayer extends Component {

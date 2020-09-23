@@ -7,8 +7,10 @@ import store from './store';
 import { Spinner } from './components';
 import { Header } from './containers';
 import { Home, Details, NotFound, MoviePlayer, MyList } from './routes';
-import { API_URL, API_KEY, IMAGE_BASE_URL, BACKDROP_SIZE } from './config';
+import { API_URL, IMAGE_BASE_URL, BACKDROP_SIZE } from './config';
 import './App.css';
+
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 class App extends Component {
 

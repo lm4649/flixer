@@ -7,8 +7,10 @@ import { Link } from 'react-router-dom';
 import { getMovies } from '../actions';
 import { Spinner, ActorList } from '../components';
 import { HeaderDetails } from '../containers'
-import { API_URL, API_KEY } from '../config';
+import { API_URL } from '../config';
 import '../css/Details.css';
+
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 class DetailsRoute extends Component {
 
