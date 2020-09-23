@@ -15,26 +15,18 @@ class HeaderComponent extends Component {
 
   render() {
     const activate = this.props.badge > 0 && !this.props.currentUrl.includes('player');
+    const iconClass = activate ? "header--movie" : "header--movie inactive";
+    const linkStyle = activate ? { position: "relative" } : { position: "relative", pointerEvents: "none" };
     return (
       <div className="header">
         <Link to={{pathname:"/"}}>
           <h3 className="header--brand">FLIXER</h3>
         </Link>
-        {  activate ?
-          (
-            <Link to={{pathname: "/player"}} style={{position: "relative"}}>
-              <FontAwesome className="header--movie" name="film" size="5x">
-                <div className="header--badge">{this.props.badge}</div>
-              </FontAwesome>
-            </Link>
-          ) :
-          (
-             <FontAwesome className="header--movie inactive" name="film" size="5x" >
-                <div className="header--badge">{this.props.badge}</div>
-             </FontAwesome>
-          )
-        }
-
+        <Link to={{pathname: "/player"}} style={linkStyle}>
+          <FontAwesome className={iconClass} name="film" size="5x">
+            <div className="header--badge">{this.props.badge}</div>
+          </FontAwesome>
+        </Link>
       </div>
     );
   }

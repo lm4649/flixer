@@ -21,6 +21,7 @@
   color: var(--primary-color);
   margin-left: 2vmin;
 }
+
 .header--movie {
   color: var(--primary-color);
   margin-right: 2vmin;
@@ -31,9 +32,11 @@
   filter: grayscale(100%);
   cursor: not-allowed;
 }
+
 .header--container {
   position: relative;
 }
+
 .header--badge {
   position: absolute;
   display: flex;
