@@ -7,4 +7,4 @@
 > - create a playlist,
 > - and watch the trailers of the selected films
 
-The app can be viewed on tablets and mobiles, even if it was not designed for.
+*The app can be viewed on tablets and mobiles, even if it was not designed for.*
